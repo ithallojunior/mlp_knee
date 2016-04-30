@@ -2,8 +2,8 @@ function  Run_this_mlp()
 clear; clc;
 
 nn = create_NN(9, 40, 1, 2, @tanh, @tanh_derivative, @tanh_cost_function);
-t = create_training(nn, 0.043142, 0.0033804, 0, -1, 5*60); %tempo
-dif = 10.0;
+t = create_training(nn, 0.043142, 0.0033804, 0, -1, 5 * 60); %tempo
+
 
 load training_set.mat 
 
@@ -21,12 +21,15 @@ pat = data(selected, :);
 
 out = [];
 desired = [];
+out_index = [];
 for item = 1:size(data,1)
 	if not(any(item == selected))
 		ao = feed_forward(nn, data(item, 1:end-nn.no));
+		out_index = [out_index; item]
 		out = [out; ao];
 		desired = [desired; data(item, end)];
 	end
+
 end
 
 disp("\n")
@@ -44,11 +47,16 @@ plot(J);
 title('Error per iteration');
 ylabel('Error');
 xlabel('Iterations');
+
+
+time_sample = 1/60;
+
+
 grid minor on;
 figure();
-plot(out, 'r');
+plot((sort((out_index-1)) * time_sample), out, 'r');
 hold on;
-plot(desired, 'b');
+plot((sort((out_index-1)) * time_sample), desired, 'b');
 title('Results');
 legend('Obtained', 'Desired');
 xlabel('Time(s)');
