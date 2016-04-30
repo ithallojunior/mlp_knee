@@ -1,0 +1,8 @@
+# Introduction
+This projects presents a MLP ANN that aproximates angular velocities from a human knee. 
+Specifically it gets contralateral knee data and simulates the angular volocity of the knee.
+
+The software was written in gnu octave language version 4.0.
+
+## Use
+Run gnu ocatve. From octave command line run: Run_this_mlp()
