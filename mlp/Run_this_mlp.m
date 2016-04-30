@@ -25,7 +25,7 @@ out_index = [];
 for item = 1:size(data,1)
 	if not(any(item == selected))
 		ao = feed_forward(nn, data(item, 1:end-nn.no));
-		out_index = [out_index; item]
+		out_index = [out_index; item];
 		out = [out; ao];
 		desired = [desired; data(item, end)];
 	end
