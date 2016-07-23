@@ -2,7 +2,7 @@ function  Run_this_mlp()
 clear; clc;
 
 nn = create_NN(9, 40, 1, 2, @tanh, @tanh_derivative, @tanh_cost_function);
-t = create_training(nn, 0.043142, 0.0033804, 0, -1, 5 * 60); %tempo
+t = create_training(nn, 0.043142, 0.0033804, 200, -1, -1); %tempo
 
 
 load training_set.mat 
